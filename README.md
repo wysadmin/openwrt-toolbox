@@ -35,14 +35,8 @@
     10.一键恢复 AdGuardHome 备份
 9. 重启路由器
 10. 卸载工具箱（仅删除脚本本体，不修改任何插件配置）
-11. 更新工具箱脚本（自动从Github拉取最新版本，双raw/ghproxy源）
+11. 更新工具箱脚本（手动检测版本并更新，双raw/ghproxy源）
 0. 退出脚本
-
-
-
-⌨️ 脚本启动快捷命令
-安装完成后，SSH 终端输入 k 启动工具箱
-
 
 ### 📦 配置备份功能
 进入【常用工具】菜单
@@ -52,22 +46,37 @@
 > 备份文件统一存放路径：`/root/backup/`
 > 命名格式：`pw_年月日_时分秒.tar.gz`、`adg_年月日_时分秒.tar.gz`
 
-### 🔄 版本自动检测
-每次启动工具箱会自动联网检测Github最新版本，
-如有新版本会弹出提示，主菜单选择【11. 更新工具箱脚本】一键升级。
-网络不通Github时自动跳过版本检测，不影响正常使用。
+### 🔄 版本更新说明
+**不会自动检测版本**，每次启动工具箱不联网检测更新。
+如需检查新版本、升级脚本，手动在主菜单选择【11. 更新工具箱脚本】。
 
-## 📥 安装方式1
+## 📥 安装方式
 1. 软路由SSH连接，执行下载命令
 ```bash
 wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
 chmod +x /root/toolbox.sh
 
+国内访问 github raw 失败时，使用 ghproxy 镜像地址：
 
-📥 安装方式2
-国内访问 github raw 失败时，使用 ghproxy 镜像地址
-```bash
-wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
+```
+wget https://ghproxy.com/https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
 chmod +x /root/toolbox.sh
+```
+## ⌨️ 脚本启动快捷命令
+
+安装完成后，SSH 终端输入 k 启动工具箱
 
 
+## 📝 使用说明
+
+1. 脚本使用 ash 编写，原生兼容 OpenWrt/iStoreOS，无需额外依赖
+2. 更新脚本：主菜单选择`11`，手动检测版本并一键拉取最新代码
+3. 备份 / 恢复配置：进入【常用工具】操作；**恢复操作会覆盖现有配置，恢复前请确认**
+4. 卸载脚本：主菜单选择`10`，只会删除 toolbox.sh，不会删除任何插件、备份文件
+
+## ⚠️ 注意事项
+
+- 执行插件安装、源添加、配置恢复建议在空闲网络时段操作
+- AdGuardHome 备份包含数据库，备份包体积会大于 Passwall
+- 备份文件保存在`/root/backup`，软路由重置前请手动下载备份包到本地电脑保存
+- 本脚本仅提供快捷管理功能，**修改系统配置前请自行做好重要数据备份**
