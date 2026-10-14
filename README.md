@@ -39,8 +39,9 @@
 0. 退出脚本
 
 
+
 ⌨️ 脚本启动快捷命令
-本安装完成后，SSH 终端输入 K 启动工具箱
+安装完成后，SSH 终端输入 k 启动工具箱
 
 
 ### 📦 配置备份功能
@@ -63,7 +64,7 @@ wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh 
 chmod +x /root/toolbox.sh
 
 
-## 📥 安装方式2
+📥 安装方式2
 国内访问 github raw 失败时，使用 ghproxy 镜像地址
 ```bash
 wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
