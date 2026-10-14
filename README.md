@@ -55,10 +55,7 @@
 ```bash
 wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
 chmod +x /root/toolbox.sh
-
-
-
-
+`
 
 
 ## ⌨️ 脚本启动快捷命令
