@@ -37,8 +37,12 @@
 10. 卸载工具箱（仅删除脚本本体，不修改任何插件配置）
 11. 更新工具箱脚本（自动从Github拉取最新版本，双raw/ghproxy源）
 0. 退出脚本
+
+
 ⌨️ 脚本启动快捷命令
 本安装完成后，SSH 终端输入 K 启动工具箱
+
+
 ### 📦 配置备份功能
 进入【常用工具】菜单
 - **一键备份 Passwall**：打包 `/etc/config/passwall` 配置
@@ -52,12 +56,14 @@
 如有新版本会弹出提示，主菜单选择【11. 更新工具箱脚本】一键升级。
 网络不通Github时自动跳过版本检测，不影响正常使用。
 
-## 📥 安装方式
+## 📥 安装方式1
 1. 软路由SSH连接，执行下载命令
 ```bash
 wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
 chmod +x /root/toolbox.sh
-## 📥 安装方式
+
+
+## 📥 安装方式2
 国内访问 github raw 失败时，使用 ghproxy 镜像地址
 ```bash
 wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
