@@ -50,9 +50,17 @@
 每次启动工具箱会自动联网检测Github最新版本，
 如有新版本会弹出提示，主菜单选择【11. 更新工具箱脚本】一键升级。
 网络不通Github时自动跳过版本检测，不影响正常使用。
-##脚本快捷命令 k
+
 ## 📥 安装方式
 1. 软路由SSH连接，执行下载命令
 ```bash
 wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
 chmod +x /root/toolbox.sh
+国内访问 github raw 失败时，使用 ghproxy 镜像地址
+```bash
+wget https://ghproxy.com/https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
+chmod +x /root/toolbox.sh
+⌨️ 脚本启动快捷命令
+本安装完成后，SSH 终端输入以下命令启动工具箱
+```bash
+k
