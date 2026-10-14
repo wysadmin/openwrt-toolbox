@@ -5,30 +5,30 @@ VER="1.12"
 RAW_URL="https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh"
 RAW_PROXY="https://ghproxy.com/https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh"
 
+# 版本检测函数，仅在【更新】菜单手动调用
 check_version(){
-    # 尝试获取远端版本，只下载前30行，减少流量
     REMOTE_VER=""
     echo "🔍正在检测新版本..."
     if wget --timeout=5 -q -O /tmp/ver.tmp $RAW_URL; then
-        REMOTE_VER=$(grep "v[0-9]" /tmp/ver.tmp | head -1 | sed -e 's/.*v//' -e 's/,.*//' -e 's/ .*//')
+        REMOTE_VER=$(grep "VER=" /tmp/ver.tmp | head -1 | sed -e 's/.*VER="//' -e 's/"//')
     else
         wget --timeout=5 -q -O /tmp/ver.tmp $RAW_PROXY
-        REMOTE_VER=$(grep "v[0-9]" /tmp/ver.tmp | head -1 | sed -e 's/.*v//' -e 's/,.*//' -e 's/ .*//')
+        REMOTE_VER=$(grep "VER=" /tmp/ver.tmp | head -1 | sed -e 's/.*VER="//' -e 's/"//')
     fi
     rm -f /tmp/ver.tmp
-    # 版本对比
     if [ -n "$REMOTE_VER" ]; then
-        # 使用awk比较浮点版本号
         HAS_NEW=$(echo "$REMOTE_VER > $VER" | awk '{if($1)print 1;else print 0}')
         if [ "$HAS_NEW" -eq 1 ];then
-            echo -e "\n🎉发现新版本 v$REMOTE_VER (当前v$VER)，主菜单选择【11】一键更新"
-            sleep 1
+            echo "🎉发现新版本 v$REMOTE_VER (当前v$VER)"
+        else
+            echo "✅当前已是最新版本 v$VER"
         fi
+    else
+        echo "❌无法获取远端版本信息，网络异常"
     fi
 }
 
 menu() {
-check_version
 clear
 echo "=============================="
 echo "    OpenWrt软路由工具箱 v$VER"
@@ -135,7 +135,7 @@ case $opt in
 11)
     clear
     echo "==== 更新工具箱脚本 ===="
-    echo "从Github拉取最新toolbox.sh覆盖本地"
+    check_version
     read -p "确认更新？输入 y 确认：" ans
     if [ "$ans" = "y" ];then
         echo "尝试拉取原版raw..."
