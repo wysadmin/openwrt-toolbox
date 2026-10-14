@@ -56,12 +56,7 @@
 wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
 chmod +x /root/toolbox.sh
 
-国内访问 github raw 失败时，使用 ghproxy 镜像地址：
 
-```
-wget https://ghproxy.com/https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
-chmod +x /root/toolbox.sh
-```
 ## ⌨️ 脚本启动快捷命令
 
 安装完成后，SSH 终端输入 k 启动工具箱
