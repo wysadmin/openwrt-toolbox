@@ -20,3 +20,11 @@ OpenWrt / iStoreOS 交互式一键工具箱，软件源自动切换
 wget https://raw.githubusercontent.com/wysadmin/openwrt-toolbox/main/toolbox.sh -O /root/toolbox.sh
 chmod +x /root/toolbox.sh
 /root/toolbox.sh
+## 🗑️ 快速卸载命令
+复制下面这行到OpenWrt/iStoreOS终端执行
+```bash
+# 仅删除工具箱脚本（保留插件与源备份）
+rm -f /root/toolbox.sh
+
+# 完全清理（脚本 + 源备份文件一起删除）
+rm -f /root/toolbox.sh /etc/opkg/distfeeds.conf.bak
