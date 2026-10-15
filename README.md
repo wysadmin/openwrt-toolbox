@@ -8,7 +8,7 @@
 ### 主菜单
 
 1. 系统信息查询：主机名、系统版本、内核、CPU、内存、网卡 IP、运行时长
-2. 系统清理（标准版）：清理 opkg 缓存、临时文件、释放内存
+2. 系统清理（标准版）：清理 opkg 缓存、LuCI 网页缓存、临时包列表，释放内存（安全模式，不会删除 LuCI 菜单文件）
 3. 系统 + Docker 清理：标准版清理 + 清理停止容器、悬空镜像
 4. Docker 管理子菜单
    - 查看运行容器
@@ -96,9 +96,18 @@ chmod +x /root/toolbox.sh
 - AdGuardHome 备份包含数据库，备份包体积会大于 Passwall
 - 备份文件保存在`/root/backup`，软路由重置前请手动下载备份包到本地电脑保存
 - 本脚本仅提供快捷管理功能，**修改系统配置前请自行做好重要数据备份**
+- 系统清理功能已采用安全策略，不再全盘清空 /tmp 目录，避免 LuCI 菜单 menu.d 损坏；若清理后 Web 管理界面异常，执行修复命令：
+
+```
+opkg update
+opkg install luci-base --force-reinstall
+rm -rf /tmp/luci-*
+/etc/init.d/uhttpd restart
+```
 
 ## 📌 版本记录
 
+- v1.13：【重要修复】系统清理改为安全清理逻辑，移除全盘清空 /tmp，防止 luci-base、menu.d 菜单损坏；增加 LuCI 故障修复提示
 - v1.12：新增 Passwall / AdGuardHome 一键备份 + 一键恢复功能；移除启动自动版本检测，改为手动触发更新
 - v1.11：新增启动自动版本检测，新版本提示
 - v1.10：新增工具箱一键更新功能
