@@ -106,6 +106,14 @@ rm -rf /tmp/luci-*
 ```
 
 ## 📌 版本记录
+## 📝 更新日志
+v1.14
+- 版本迭代升级，延续v1.13全部特性
+- ✨ 保留：自动识别 opkg(OpenWrt) / apk(iStoreOS Alpine)
+- 🐛 保留：安全清理逻辑，保护 LuCI / menu.d，杜绝损坏web界面
+- 📂 保留：备份目录自动创建 `/root/backup`，Passwall & AdGuardHome 备份/恢复
+- ⚙️ 保留：内置`k`快捷别名，脚本更新支持 raw/ghproxy 双源
+- 🔒 保留：仅手动菜单更新，启动不自动检测版本
 
 - v1.13：【重要修复】系统清理改为安全清理逻辑，移除全盘清空 /tmp，防止 luci-base、menu.d 菜单损坏；增加 LuCI 故障修复提示
 - v1.12：新增 Passwall / AdGuardHome 一键备份 + 一键恢复功能；移除启动自动版本检测，改为手动触发更新
